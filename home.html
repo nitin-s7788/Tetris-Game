@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Home Page </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            background: #040433da;
+            text-align: center;
+            font-family: 'Acme', sans-serif;
+            color: wheat;
+        }
+
+        .logo{
+            margin-top: 17.5vh;
+            height: 200px;
+            width: 550px;
+            display: inline-block;
+            justify-content: center;
+            box-shadow: 0 0 10px 0 grey;
+        }
+
+        .logo img{
+            height: 100%;
+            width: 100%;
+        }
+
+        .user{
+            padding-top: 10px;
+            line-height: 50px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .user input{
+            border-radius: 30px;
+            width: 200px;
+            line-height: 30px;
+            font-size: 20px;
+            padding-left: 20px;
+        }
+
+        .user input:focus{
+            outline: none;
+        }
+
+        .user button{
+            text-decoration: none;
+            background-color: tomato;
+            border: 2px groove burlywood;
+            border-radius: 20px;
+            width: 100px;
+            line-height: 35px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .user button:hover{
+            background-color: rgb(247, 67, 35);
+        }
+
+        .user a{
+            text-decoration: none;
+            color: wheat;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div class="logo">
+            <img src="logo2.jpeg" alt="logo image">
+        </div>
+
+        <div class="user">
+            <div class="text"> Enter Username : </div>
+            <div class="username">
+                <input type="text" id = "username">
+            </div>
+            <div class="submit"> 
+                
+                <button class = "btn" onclick="updateRecord()">
+                    <a href="main-menu.html">
+                    submit
+                    </a>
+                </button> 
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateRecord()
+        {
+        let cur_user = document.getElementById("username").value;
+        localStorage.setItem("currentPlayer", cur_user);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        body{
+            background-color: #202028;;
+        }
+
+        .heading{
+            text-align: center;
+            line-height: 80px;
+            font-size: 50px;
+            font-family: 'Acme', sans-serif;
+        }
+
+        h1{
+            font-family: 'Acme', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .main{
+            display : flex;
+            height : 60vh;
+            justify-content: space-around;
+        }
+
+        .box1{
+            width: 600px;
+            border: 5px solid wheat;
+            margin-right: 200px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box2{
+            width: 600px;
+            border: 5px solid wheat;
+            text-align: center;
+            padding: 30px;
+        }
+
+        li{
+            list-style: none;
+            line-height: 55px;
+            font-size: 25px;
+        }
+
+
+        .innerHead{
+            display: inline-block;
+            width: 170px;
+        }
+
+        .head1{
+            line-height: 60px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .back{
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .back button{
+            width: 120px;
+            line-height: 40px;
+            border-radius: 30px;
+            font-size: 20px;
+            background-color: tomato;
+        }
+
+        .back button:hover{
+            background-color: rgb(247, 67, 35);
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="heading"> Stats </div>
+    <div class="main">
+        <div class="box1">
+            <h1>Personal HighScores</h1>
+
+            <div class="heads head1">
+                <div class="innerHead">Rank</div>
+                <div class="innerHead">Player</div>
+                <div class="innerHead">Score</div>
+            </div>
+
+            <div class="list1">
+                <ul id = "list1">
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="box2">
+            <h1>Global HighScores</h1>
+
+            <div class="heads head1">
+                <div class="innerHead">Rank</div>
+                <div class="innerHead">Player</div>
+                <div class="innerHead">Score</div>
+            </div>
+
+            <div class="list2">
+                <ul id = "list2">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="back">
+        <button>
+            <a href="main-menu.html"> Back </a>
+        </button>
+    </div>
+
+
+
+    <script>
+        let curPlayer = localStorage.getItem("currentPlayer");
+        let arr = JSON.parse(localStorage.getItem("scoreArray"));
+
+        let s1 = ``;
+        let s2 = ``;
+
+
+        if(arr != null)
+        {
+            arr.sort( function(a,b) { return ( Number(b.score) - Number(a.score) ) } );
+
+            let i1 = 0, i2 = 0;
+            for(let i=0; i<arr.length; i++)
+            {
+                if(i1 < 5 && arr[i].name === curPlayer)
+                {
+                    i1++;
+                    s1 += 
+                    `
+                    <li class = "heads">  <div class = "innerHead"> ${i1}  </div>    <div class = "innerHead"> ${curPlayer} </div>   <div class = "innerHead"> ${arr[i].score} </div>   </li>
+                    `;
+                    // `
+                    // <li> ${i1+ "     " + curPlayer + "      " + arr[i].score }   </li>
+                    // `;
+                }
+                if(i2 < 5)
+                {
+                    i2++;
+                    s2 +=  
+                    `
+                    <li class = "heads">  <div class = "innerHead"> ${i2}  </div>    <div class = "innerHead"> ${arr[i].name} </div>   <div class = "innerHead"> ${arr[i].score} </div>   </li>
+                    `;
+
+                }
+            }
+
+            document.getElementById("list1").innerHTML = s1;
+            document.getElementById("list2").innerHTML = s2;
+
+        }
+
+        
+
+    </script>
+
+</body>
+</html>
